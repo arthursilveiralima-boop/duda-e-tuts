@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Duda e Tuts · 24 de outubro</title>
+<meta name="description" content="Sábado, 24 de outubro, às 14h, no salão de festas do prédio.">
+<meta property="og:title" content="Aniversário da Duda e do Tuts">
+<meta property="og:description" content="Sábado, 24/10, às 14h, no salão de festas do prédio. Confirme aqui se você vem.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Jost:wght@300;400;500&display=swap">
+<style>
+  :root {
+    --paper: #eceee8;
+    --card: #fdfdfa;
+    --ink: #22303e;
+    --muted: #6c7480;
+    --line: #dfe1da;
+    --soft: #f2f3ee;
+    --gold: #a3864f;
+    --display: "Cormorant Garamond", "Garamond", Georgia, serif;
+    --body: "Jost", "Helvetica Neue", Arial, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 300 16px/1.6 var(--body);
+    padding: max(20px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(32px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+    min-height: 100vh;
+    display: grid;
+    place-items: start center;
+  }
+  .card {
+    width: 100%;
+    max-width: 440px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 48px 28px 34px;
+    margin-top: 3vh;
+  }
+  header { text-align: center; }
+  .kicker { font-size: 15px; color: var(--muted); margin: 0 0 14px; }
+  h1 {
+    font-family: var(--display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(52px, 16vw, 66px);
+    line-height: .95;
+    margin: 0;
+  }
+  h1 .amp { color: var(--gold); font-size: .75em; padding: 0 .05em; }
+  .sub { margin: 12px 0 0; font-size: 16px; color: var(--muted); }
+  .rule { display: flex; align-items: center; gap: 10px; justify-content: center; margin: 30px 0; }
+  .rule::before, .rule::after { content: ""; width: 34px; height: 1px; background: var(--gold); }
+  .rule span { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); }
+  .info { margin: 0; display: grid; gap: 4px; text-align: center; font-family: var(--display); font-weight: 500; font-size: 24px; line-height: 1.3; }
+  .info p { margin: 0; }
+  .info .when { font-size: 15px; font-family: var(--body); font-weight: 300; color: var(--muted); margin-top: 2px; }
+  form { margin-top: 38px; padding-top: 30px; border-top: 1px solid var(--line); display: grid; gap: 18px; }
+  .form-title { font-family: var(--display); font-weight: 500; font-size: 26px; margin: 0; text-align: center; }
+  label { font-size: 14px; color: var(--muted); display: block; margin-bottom: 6px; }
+  input[type=text] {
+    width: 100%;
+    font: 400 17px var(--body);
+    color: var(--ink);
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  input[type=text]:focus { outline: none; border-color: var(--ink); background: var(--card); }
+  .choice { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .choice input { position: absolute; opacity: 0; pointer-events: none; }
+  .choice label {
+    margin: 0; text-align: center; padding: 12px 8px; cursor: pointer; border-radius: 6px;
+    font-size: 15px; font-weight: 400; color: var(--ink); border: 1px solid var(--line);
+  }
+  .choice input:checked + label { background: var(--ink); border-color: var(--ink); color: var(--card); }
+  .choice input:focus-visible + label { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .companions { display: grid; }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 2px; }
+  .row + .row { border-top: 1px solid var(--line); }
+  .row span { font-size: 15px; font-weight: 400; }
+  .row small { display: block; font-size: 13px; font-weight: 300; color: var(--muted); }
+  .stepper { display: flex; align-items: center; gap: 6px; }
+  .stepper button {
+    width: 36px; height: 36px; border: 1px solid var(--line); background: transparent;
+    color: var(--ink); font: 400 19px var(--body); cursor: pointer; border-radius: 50%;
+  }
+  .stepper button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .stepper output { min-width: 26px; text-align: center; font-variant-numeric: tabular-nums; font-size: 18px; font-weight: 400; }
+  .submit {
+    margin-top: 6px; padding: 15px; border: 0; border-radius: 6px; background: var(--ink); color: var(--card);
+    font: 500 15px var(--body); letter-spacing: .04em; cursor: pointer;
+  }
+  .submit:disabled { opacity: .55; cursor: default; }
+  .submit:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .msg { text-align: center; font-size: 14px; min-height: 1em; margin: 0; color: var(--muted); }
+  .msg.err { color: #a33a32; }
+  .done { text-align: center; margin-top: 38px; padding-top: 30px; border-top: 1px solid var(--line); }
+  .done p { margin: 0; }
+  .done .big { font-family: var(--display); font-style: italic; font-weight: 500; font-size: 32px; margin-bottom: 6px; }
+  .done button { margin-top: 18px; background: none; border: 0; color: var(--muted); font: 300 14px var(--body); text-decoration: underline; cursor: pointer; }
+  [hidden] { display: none !important; }
+  @media (prefers-reduced-motion: no-preference) {
+    .card { animation: rise .7s ease-out both; }
+    @keyframes rise { from { opacity: .001; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  }
+</style>
+</head>
+<body>
+<main class="card">
+  <header>
+    <p class="kicker">Vem comemorar com a gente</p>
+    <h1>Duda <span class="amp">&amp;</span> Tuts</h1>
+    <p class="sub">estão fazendo aniversário</p>
+  </header>
+
+  <div class="rule" aria-hidden="true"><span></span></div>
+
+  <div class="info">
+    <p>Sábado, 24 de outubro</p>
+    <p>às 14h</p>
+    <p class="when">no salão de festas do prédio</p>
+  </div>
+
+  <form id="rsvp" novalidate>
+    <p class="form-title">Você vem?</p>
+    <div>
+      <label for="nome">Seu nome</label>
+      <input type="text" id="nome" name="nome" autocomplete="name" maxlength="80" required>
+    </div>
+    <div class="choice" role="radiogroup" aria-label="Presença">
+      <input type="radio" id="vou" name="vai" value="sim" checked><label for="vou">Vou</label>
+      <input type="radio" id="naovou" name="vai" value="nao"><label for="naovou">Não vou poder</label>
+    </div>
+    <div class="companions" id="companions">
+      <div class="row">
+        <span>Adultos com você<small>Sem contar você</small></span>
+        <div class="stepper" data-field="adultos">
+          <button type="button" data-d="-1" aria-label="Menos um adulto">−</button>
+          <output id="adultos">0</output>
+          <button type="button" data-d="1" aria-label="Mais um adulto">+</button>
+        </div>
+      </div>
+      <div class="row">
+        <span>Crianças</span>
+        <div class="stepper" data-field="criancas">
+          <button type="button" data-d="-1" aria-label="Menos uma criança">−</button>
+          <output id="criancas">0</output>
+          <button type="button" data-d="1" aria-label="Mais uma criança">+</button>
+        </div>
+      </div>
+    </div>
+    <button class="submit" type="submit" id="enviar">Confirmar</button>
+    <p class="msg" id="msg" role="status"></p>
+  </form>
+
+  <div class="done" id="done" hidden>
+    <p class="big" id="doneTitle">Até sábado!</p>
+    <p id="doneText"></p>
+    <button type="button" id="again">Responder de novo</button>
+  </div>
+</main>
+
+<script>
+  const counts = { adultos: 0, criancas: 0 };
+  document.querySelectorAll('.stepper').forEach(s => {
+    const f = s.dataset.field;
+    s.addEventListener('click', e => {
+      const d = Number(e.target.dataset.d || 0);
+      if (!d) return;
+      counts[f] = Math.max(0, Math.min(20, counts[f] + d));
+      document.getElementById(f).textContent = counts[f];
+    });
+  });
+  const form = document.getElementById('rsvp');
+  const comp = document.getElementById('companions');
+  form.addEventListener('change', () => { comp.hidden = form.vai.value === 'nao'; });
+
+  const msg = document.getElementById('msg');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const nome = form.nome.value.trim();
+    if (!nome) { msg.className = 'msg err'; msg.textContent = 'Coloque seu nome pra gente saber quem é.'; form.nome.focus(); return; }
+    const vai = form.vai.value === 'sim';
+    const btn = document.getElementById('enviar');
+    btn.disabled = true; msg.className = 'msg'; msg.textContent = 'Enviando…';
+    try {
+      const r = await fetch('/api/rsvp', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ nome, vai, adultos: vai ? counts.adultos : 0, criancas: vai ? counts.criancas : 0 })
+      });
+      if (!r.ok) throw new Error();
+      msg.textContent = '';
+      form.hidden = true;
+      document.getElementById('done').hidden = false;
+      document.getElementById('doneTitle').textContent = vai ? 'Até sábado!' : 'Vamos sentir sua falta';
+      const extras = [];
+      if (vai && counts.adultos) extras.push(counts.adultos + (counts.adultos > 1 ? ' adultos' : ' adulto'));
+      if (vai && counts.criancas) extras.push(counts.criancas + (counts.criancas > 1 ? ' crianças' : ' criança'));
+      document.getElementById('doneText').textContent = vai
+        ? 'Presença confirmada' + (extras.length ? ', com ' + extras.join(' e ') : '') + '.'
+        : 'Obrigado por avisar.';
+    } catch {
+      msg.className = 'msg err'; msg.textContent = 'Não deu pra enviar. Tente de novo em instantes.';
+    } finally { btn.disabled = false; }
+  });
+  document.getElementById('again').addEventListener('click', () => {
+    form.reset(); counts.adultos = counts.criancas = 0;
+    document.getElementById('adultos').textContent = 0; document.getElementById('criancas').textContent = 0;
+    comp.hidden = false; form.hidden = false; document.getElementById('done').hidden = true;
+  });
+</script>
+</body>
+</html>
